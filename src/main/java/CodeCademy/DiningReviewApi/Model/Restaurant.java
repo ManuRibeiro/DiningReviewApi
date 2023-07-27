@@ -13,7 +13,6 @@ import lombok.*;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-@RequiredArgsConstructor
 public class Restaurant {
 
     @Id
@@ -22,6 +21,12 @@ public class Restaurant {
 
     @NotBlank(message = "Insert the restaurant's name")
     private String name;
+
+    @NotBlank
+    private String zipCode;
+
+    @NotBlank
+    private String city;
 
     @Min(1)@Max(5)
     private Integer peanutScore;
