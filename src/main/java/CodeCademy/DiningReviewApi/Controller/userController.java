@@ -2,8 +2,9 @@ package CodeCademy.DiningReviewApi.Controller;
 
 import CodeCademy.DiningReviewApi.Model.User;
 import CodeCademy.DiningReviewApi.Repository.userRepository;
-import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.server.ResponseStatusException;
 
 import java.util.Optional;
 
@@ -28,5 +29,26 @@ public class userController {
        this.userRepo.save(newUser);
        return "User created Successfuly!";
    }
+   @GetMapping("/allUsers")
+    private Iterable<User> getAllUsers(){
+        return this.userRepo.findAll();
+    }
 
+    @PutMapping("/editUser/{userName}")
+    private User editUser(@RequestBody User userInput,@PathVariable(value = "userName") String name) {
+        Optional<User> userToEdit = userRepo.findUsersByName(name);
+        if (userToEdit.isEmpty()) {
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND);
+        }
+        User updateduser = userToEdit.get();
+        updateduser.setZipcode(userInput.getZipcode());
+        updateduser.setState(userInput.getState());
+        updateduser.setCity(userInput.getCity());
+        updateduser.setInterestEgg(userInput.getInterestEgg());
+        updateduser.setInterestDairy(userInput.getInterestDairy());
+        updateduser.setInterestPeanut(userInput.getInterestPeanut());
+        this.userRepo.save(updateduser);
+        return updateduser;
+
+    }
 }

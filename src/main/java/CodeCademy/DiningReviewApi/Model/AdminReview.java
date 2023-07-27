@@ -3,6 +3,7 @@ package CodeCademy.DiningReviewApi.Model;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.Table;
 import lombok.*;
 
 @Entity
@@ -10,6 +11,7 @@ import lombok.*;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
+@Table(name = "reviewAdministrado")
 public class AdminReview {
     @Id
     @GeneratedValue

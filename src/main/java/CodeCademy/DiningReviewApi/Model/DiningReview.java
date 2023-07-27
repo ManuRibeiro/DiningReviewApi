@@ -1,5 +1,6 @@
 package CodeCademy.DiningReviewApi.Model;
 
+import jakarta.persistence.Table;
 import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.Max;
 import jakarta.persistence.Entity;
@@ -13,6 +14,7 @@ import lombok.*;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
+@Table (name = "reviewDoRestaurante")
 public class DiningReview {
 
     @Id
@@ -22,13 +24,16 @@ public class DiningReview {
     @NotNull(message = "You must input a restaurant Id")
     private Long restaurantId;
 
-    @Min(1)@Max(5)
+    @Min(1)
+    @Max(5)
     private Integer peanutScore;
 
-    @Min(1)@Max(5)
+    @Min(1)
+    @Max(5)
     private Integer eggScore;
 
-    @Min(1)@Max(5)
+    @Min(1)
+    @Max(5)
     private Integer dairyScore;
 
     private String commentary;

@@ -1,9 +1,6 @@
 package CodeCademy.DiningReviewApi.Model;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
 import lombok.*;
 
@@ -12,13 +9,15 @@ import lombok.*;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
+@Table(name = "utilizadores")
 public class User {
 
     @Id
     @GeneratedValue
     private Long  Id;
 
-    @Column(unique = true)@NotBlank(message = "Please insert your name")
+    @Column(unique = true)
+    @NotBlank(message = "Please insert your name")
     private String name;
 
     @NotBlank(message = "Insert the city you live in")
@@ -29,9 +28,11 @@ public class User {
 
     @NotBlank(message = "Insert your cities zipcode")
     private String zipcode;
-
+    @NonNull
     private Boolean interestPeanut;
+    @NonNull
     private Boolean interestEgg;
+    @NonNull
     private Boolean interestDairy;
 
 }
